@@ -1,13 +1,13 @@
 <template>
   <div id="app">
- <navbar></navbar>
+ <navbar @search="search"></navbar>
 <div class = "container">
   <div class="row">
     <div class = "col-sm-9">
    <inventory @newItemAdded="addCartItem" :items="items"></inventory>
   </div>
   <div class = "col-sm-3">
-   <cart :items="cart"></cart>
+   <cart @itemRemoved="removeItem" :items="cart"></cart>
   </div>
 </div>
 </div>
@@ -29,20 +29,23 @@ export default {
    data() {
      return {
        items: [],
-       cart: [{
-         id: 1,
-         title: "Test",
-         price: 0.0,
-         photo: "http://dummyimage.com/286x180.png/5fa2dd/ffffff"
-       }]
+       cart: []
      }
    },
    mounted() {
      this.items = data
    },
    methods: {
+     search(keyword) {
+       this.items = data.filter(item => {
+         return item.title.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
+       })
+     },
      addCartItem(item) {
        this.cart.push(item)
+     },
+     removeItem(index) {
+       this.cart.splice(index, 1)
      }
    }
 }
