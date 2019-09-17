@@ -13,7 +13,12 @@
 
 <script>
 export default {
-  props: ['items'],
+  // props: ['items'],
+  data() {
+    return {
+      items: []
+    }
+  },
   methods: {
     addToCart(item) {
       this.$emit('newItemAdded', item)
