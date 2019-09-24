@@ -19,9 +19,16 @@ const router = new VueRouter({
   routes
 })
 /* eslint-disable no-new */
+
+import Vuex from 'vuex'
+Vue.use(Vuex)
+import { storage } from './store/index'
+const store = new Vuex.Store(storage)
+
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

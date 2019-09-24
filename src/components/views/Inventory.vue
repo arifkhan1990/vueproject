@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     addToCart(item) {
-      this.$emit('newItemAdded', item)
+      this.$store.commit('addToCart', item)
     },
     fetchInventory() {
       var self = this
