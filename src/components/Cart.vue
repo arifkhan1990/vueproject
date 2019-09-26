@@ -16,6 +16,10 @@
       <span class="item-name">Total</span>
       <span class="item-price float-right">${{ totalPrice }}</span>
     </li>
+
+    <li v-if="items.length > 0" class="list-group-item">
+      <button @click="checkout" class="btn btn-block btn-success">Check Out</button>
+    </li>
   </ul>
 </template>
 
@@ -36,6 +40,11 @@ export default {
   methods: {
     removeItem(index) {
       this.$store.commit('removeItem', index)
+    },
+    checkout() {
+      if(confirm("Are you sure you want to checkout?")) {
+        this.$store.commit('clearCart')
+      }
     }
   }
 }

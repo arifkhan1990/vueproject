@@ -32,6 +32,9 @@ export default {
             axios.get('http://localhost:3000/item/' + this.$route.params.id).then(response => {
                 self.item = response.data
             })
+        },
+        addToCart(item) {
+            this.$store.commit('addToCart', item)
         }
     }
 }
